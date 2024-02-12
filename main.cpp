@@ -286,8 +286,10 @@ void process_inputs() {
         was_g_pressed = true;
         wireframe_mode = !wireframe_mode;
         if (wireframe_mode) {
+            // draw polygons as lines
             glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
         } else {
+            // fill faces of polygons
             glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
         }
     }
@@ -314,7 +316,8 @@ void render() {
     // scale and rotate vertex data
     // matrix multiplication is read right to left
     glm::mat4 transform = glm::mat4(1.0f);
-    transform = glm::rotate(transform, (float)sin(glfwGetTime())*5+5, glm::vec3(0.5f, -1.0f, 0.25f));
+    std::vector<float> identity = oscillate_rgb(glfwGetTime());
+    transform = glm::rotate(transform, (float)(sin(glfwGetTime())+5+glfwGetTime()), glm::vec3(identity[0], identity[1], identity[2]));
     unsigned int trans_loc = glGetUniformLocation(shader.get_program(), "transform");
     glUniformMatrix4fv(trans_loc, 1, GL_FALSE, glm::value_ptr(transform));
 
