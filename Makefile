@@ -17,5 +17,8 @@ OUT := a.exe
 main: ${SRC}
 	${CXX} ${SRC} ${CXXFLAGS} ${INCLUDE} ${LIB} ${LIBFLAGS} -o ${OUT}
 
+release: ${SRC}
+	${CXX} ${SRC} ${CXXFLAGS} ${INCLUDE} ${LIB} ${LIBFLAGS} -o r_${OUT} -O2
+
 clean:
-	del ${OUT}
+	del *.exe
