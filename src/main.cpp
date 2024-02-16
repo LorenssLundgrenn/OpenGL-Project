@@ -315,11 +315,11 @@ void render() {
 
     // scale and rotate vertex data
     // matrix multiplication is read right to left
-    glm::mat4 transform = glm::mat4(1.0f);
-    std::vector<float> identity = oscillate_rgb(glfwGetTime());
-    transform = glm::rotate(transform, (float)(sin(glfwGetTime())+5+glfwGetTime()), glm::vec3(identity[0], identity[1], identity[2]));
+    glm::mat4 model = glm::mat4(1.0f);
+    std::vector<float> rgb = oscillate_rgb(glfwGetTime());
+    model = glm::rotate(model, (float)(sin(glfwGetTime())+5+glfwGetTime()), glm::vec3(rgb[0], rgb[1], rgb[2]));
     unsigned int trans_loc = glGetUniformLocation(shader.get_program(), "transform");
-    glUniformMatrix4fv(trans_loc, 1, GL_FALSE, glm::value_ptr(transform));
+    glUniformMatrix4fv(trans_loc, 1, GL_FALSE, glm::value_ptr(model));
 
     // render triangle using previously
     // defined VBO and EBO vertex data

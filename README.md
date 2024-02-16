@@ -1,5 +1,5 @@
-Originally built in vs, ported over to just 
-using mingw and raw makefiles.
+Originally built in vs, ported over to 
+mingw with cmake.
 
 I am learning c++, cmake, OpenGL and graphics
 programming simultaneously with this single 
