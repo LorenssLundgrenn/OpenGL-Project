@@ -19,12 +19,12 @@ set(EXTLIB_DIR C:/dependencies/)
 
 target_include_directories( ${PROJECT_NAME} 
     PRIVATE ./includes
-    PRIVATE ${EXTLIB_DIR}glfw-3.3.9-mingw/build/include
+    PRIVATE ${EXTLIB_DIR}glfw-3.3.9-mingw/build_x64/include
     PRIVATE ${EXTLIB_DIR}glad-cpp-3.3-core/include
     PRIVATE ${EXTLIB_DIR}glm-1.0.0
     PRIVATE ${EXTLIB_DIR}plog-1.1.10/include
 )
 
 target_link_libraries( ${PROJECT_NAME} 
-    PRIVATE ${EXTLIB_DIR}glfw-3.3.9-mingw/build/lib/libglfw3.a
+    PRIVATE ${EXTLIB_DIR}glfw-3.3.9-mingw/build_x64/lib/libglfw3.a
 )
