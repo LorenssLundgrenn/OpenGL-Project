@@ -4,27 +4,36 @@
 cmake_minimum_required(VERSION 3.28.3)
 project(opengl)
 
-set(SRC_DIR ./src/)
+set(SRC_DIR ./src)
 
-set(SRC ${SRC_DIR}main.cpp
-    ${SRC_DIR}constants.cpp
-    ${SRC_DIR}util.cpp
-    ${SRC_DIR}shader.cpp
-    ${SRC_DIR}glad.c
+set( SRC 
+    ${SRC_DIR}/main.cpp
+    ${SRC_DIR}/constants.cpp
+    ${SRC_DIR}/util.cpp
+    ${SRC_DIR}/shader.cpp
+    ${SRC_DIR}/glad.c
 )
 
 add_executable(${PROJECT_NAME} ${SRC})
 
-set(EXTLIB_DIR C:/dependencies/)
+set(EXTLIB_DIR C:/dependencies)
+set(GLFW_DIR ${EXTLIB_DIR}/glfw-3.3.9-mingw)
+set(GLAD_DIR ${EXTLIB_DIR}/glad-cpp-3.3-core)
+set(GLM_DIR ${EXTLIB_DIR}/glm-1.0.0)
+set(PLOG_DIR ${EXTLIB_DIR}/plog-1.1.10)
 
 target_include_directories( ${PROJECT_NAME} 
     PRIVATE ./includes
-    PRIVATE ${EXTLIB_DIR}glfw-3.3.9-mingw/build_x64/include
-    PRIVATE ${EXTLIB_DIR}glad-cpp-3.3-core/include
-    PRIVATE ${EXTLIB_DIR}glm-1.0.0
-    PRIVATE ${EXTLIB_DIR}plog-1.1.10/include
+    PRIVATE ${GLFW_DIR}/build_x64/include
+    PRIVATE ${GLAD_DIR}/include
+    PRIVATE ${GLM_DIR}
+    PRIVATE ${PLOG_DIR}/include
+)
+
+target_link_directories( ${PROJECT_NAME}
+    PRIVATE ${GLFW_DIR}/build_x64/lib
 )
 
 target_link_libraries( ${PROJECT_NAME} 
-    PRIVATE ${EXTLIB_DIR}glfw-3.3.9-mingw/build_x64/lib/libglfw3.a
+    PRIVATE libglfw3.a
 )
