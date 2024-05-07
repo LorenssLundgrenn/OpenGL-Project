@@ -14,7 +14,6 @@
 #include "constants.hpp"
 #include "util.hpp"
 #include "shader.hpp"
-#include "stb_image.hpp"
 
 void handle_fatal_GLFW_error();
 int initialize_program();
@@ -37,6 +36,9 @@ unsigned int VBO{};
 unsigned int EBO{};
 bool wireframe_mode = false;
 unsigned int nvertices{};
+
+unsigned int texture1;
+unsigned int texture2;
 
 int main()
 {
@@ -224,7 +226,6 @@ void generate_vertex_data() {
     stbi_set_flip_vertically_on_load(true);
 
     // generate texture object "container.jpg"
-    unsigned int texture1;
     glGenTextures(1, &texture1);
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, texture1);
@@ -241,7 +242,6 @@ void generate_vertex_data() {
     stbi_image_free(data);
 
     // generate texture object "awesomeface.png"
-    unsigned int texture2;
     glGenTextures(1, &texture2);
     glActiveTexture(GL_TEXTURE1);
     glBindTexture(GL_TEXTURE_2D, texture2);
@@ -301,6 +301,11 @@ void process_inputs() {
 void render() {
     glClearColor(BLACK[0], BLACK[1], BLACK[2], BLACK[3]);
     glClear(GL_COLOR_BUFFER_BIT);
+
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, texture1);
+    glActiveTexture(GL_TEXTURE1);
+    glBindTexture(GL_TEXTURE_2D, texture2);
 
     shader.use_program();
 

@@ -1,0 +1,1 @@
+﻿2024-05-07 14:12:57.782 DEBUG [20904] [Shader::read_shader_file@28] failed to read file: "../shaders/vertex_shader.vert"

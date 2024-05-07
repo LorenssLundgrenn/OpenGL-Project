@@ -8,6 +8,9 @@ out vec4 vertex_color;
 out vec2 vertex_texture;
 
 uniform mat4 transform;
+uniform mat4 model;
+uniform mat4 view;
+uniform mat4 projection;
 
 void main() {
     gl_Position = transform * vec4(attr_pos, 1.0);

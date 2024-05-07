@@ -3,7 +3,6 @@
 #include <vector>
 #include <iostream>
 
-// thank you ChatGPT :)
 std::vector<float> oscillate_rgb(float time, float freq) {
     float amplitude = 0.5f;
     float sin_period = 2.0f * (float)M_PI; // one full cycle
