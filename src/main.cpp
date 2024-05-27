@@ -18,8 +18,8 @@
 void handle_fatal_GLFW_error();
 int initialize_program();
 void framebuffer_size_callback(
-    GLFWwindow*,
-    int new_width, int new_height
+    GLFWwindow* window,
+    int width, int height
 );
 
 void generate_vertex_data();
@@ -110,11 +110,25 @@ int initialize_program() {
 }
 
 // update viewport upon window resize
-void framebuffer_size_callback(
-    GLFWwindow*, // callback arg
-    int new_width, int new_height
-) {
-    glViewport(0, 0, new_width, new_height);
+void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
+    int viewport_width, viewport_height;
+    float aspect_ratio = 1;
+
+    if (width / static_cast<float>(height) > aspect_ratio) {
+        viewport_width = static_cast<int>(height * aspect_ratio);
+        viewport_height = height;
+    } else {
+        viewport_width = width;
+        viewport_height = static_cast<int>(width / aspect_ratio);
+    }
+
+    int viewport_x = (width - viewport_width) / 2;
+    int viewport_y = (height - viewport_height) / 2;
+
+    glViewport(viewport_x, viewport_y, viewport_width, viewport_height);
+
+    glClearColor(WHITE[0], WHITE[1], WHITE[2], WHITE[3]);
+    glClear(GL_COLOR_BUFFER_BIT);
 }
 
 void generate_vertex_data() {
